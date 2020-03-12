@@ -59,6 +59,11 @@ public class App {
             System.out.print("Please enter the postcode: ");
             String postcode = command.nextLine();
 
+            if (suburbName.isEmpty() || postcode.isEmpty()) {
+                System.out.println("Can not have empty input for suburb or postcode");
+                command.reset();
+                continue;
+            }
             if (!isValidInt(postcode)) {
                 System.out.println("Invalid input for postcode");
                 command.reset();

@@ -1,4 +1,34 @@
+## Solution Explanation
+
+Assuming the time suggestion and requirements, I approached the problem using a rather simple approach.
+As the program should start up quickly and be ready for search, the input terminal allows starts
+up with the program and an executor does the processing of the locations.
+
+Two approaches were to pre-parse all of the locations and work out distances, which would allow for
+the quickest response time, but went with the current approach due to the startup requirement.
+
+There are currently some chances of duplicate work being executed, if a location has not yet been
+processed and a user queries that location while the thread is executing that reference. This
+could be fixed using locks and checks around the state.
+
+### Assumptions
+I made the assumption that we couldn't add any extra resource files, and that the locations json 
+file was extendable, or could be updated at any point to include different locations, and therefore
+processing at startup was necessary each time rather than serializing the data (see indexing idea).
+
+
+### Starting the App
+- Added the maven assembly plugin, which produces a jar called ```backend-challenge.jar```
+- To run the jar, run the ```mvn package``` to assemble the jar file and then run 
+```java -jar backend-challenge.jar``` to start execution.
+- Alternatively running the App.main() if in an IDE will also suffice.
+
+
 # NurtureCloud Backend Challenge
+
+In a real world scenario I think I would have gone with an indexing system such as Lucene where 
+the locations would be indexed (prior to startup, and this also makes the solution a lot more 
+scalable) and can be loaded on startup or just referenced on demand from the cache. 
 
 ## Scenario
 
